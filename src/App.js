@@ -1,7 +1,4 @@
-import Info from './Components/info';
-import Form from './Components/form';
-import Weather from './Components/Weather';
-import Header from './Components/header';
+import Header from './Components/header/header';
 import Body from './Components/body';
 import car from './img/car.svg'
 import { Router, Route, IndexRoute, BrowserRouter, Routes } from 'react-router-dom'
@@ -46,6 +43,7 @@ const App = () => {
     // </div>
     <BrowserRouter>
       <div>
+        <div onLoad={console.log("App")}></div>
         <Header />
         <Body weatherMethod={gettingWeather} state={state}/>
         <Routes>

@@ -4,7 +4,6 @@ const Weather = (props) => {
     console.log(props);
     return (
         <div>
-
             <div>
                 <p>Местоположение: {`${props.state.city}`}</p>
                 <p>Температура: {`${props.state.temp}`}</p>
