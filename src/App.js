@@ -1,24 +1,59 @@
-import logo from './logo.svg';
+import Info from './Components/info';
+import Form from './Components/form';
+import Weather from './Components/Weather';
+import Header from './Components/header';
+import Body from './Components/body';
+import car from './img/car.svg'
+import { Router, Route, IndexRoute, BrowserRouter, Routes } from 'react-router-dom'
 import './App.css';
+import About from './Components/about';
 
-function App() {
+const API_KEY = "a8e57f0cdebfefde8d1b3c1f7f3e6755";
+
+const App = () => {
+
+  let state = {
+    temp: undefined,
+    city: undefined,
+    country: undefined,
+    sunrise: undefined,
+    sunset: undefined,
+  }
+
+  const gettingWeather = async (e) =>{
+    e.preventDefault();
+    const city = e.target.elements.city.value;
+    const api_url =await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`);
+    const data =  await api_url.json();
+    
+    state = {
+      temp: data.main.temp,
+      city: data.name,
+      country: data.sys.country,
+      sunrise: data.sys.sunrise,
+      sunset: data.sys.sunset,
+    }
+
+    console.log(state)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    // <div className='App'>
+    //   <header className='App-header'>
+    //     <img src={car} className="App-logo" alt="logo"></img>
+    //     <p>Жизневский Никита ИКБО-16-20</p>
+    //   </header>
+    // </div>
+    <BrowserRouter>
+      <div>
+        <Header />
+        <Body weatherMethod={gettingWeather} state={state}/>
+        <Routes>
+            <Route path="/about" element={<About/>}/>
+            <Route path="/" element/>
+        </Routes>
+      </div> 
+    </BrowserRouter>
   );
 }
 
