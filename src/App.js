@@ -23,6 +23,7 @@ const App = (props) => {
       sunrise: data.sys.sunrise,
       sunset: data.sys.sunset,
     }
+    console.log(state)
     root.render (<App state={state}/>);
   }
 
