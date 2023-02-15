@@ -1,10 +1,6 @@
 import React from "react";
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import { NavLink } from "react-router-dom";
-import s from "./header.css";
+
 
 
 const Header = () =>{
@@ -21,7 +17,10 @@ const Header = () =>{
               <NavLink className='nav-link' to="/about">О нас</NavLink>
             </li>
             <li class="nav-item">
-            <NavLink className='nav-link' to="/">Главнвя</NavLink>
+            <NavLink className='nav-link' to="/weather">Погода</NavLink>
+            </li>
+            <li class="nav-item">
+            <NavLink className='nav-link' to="dialogs">Диалоги</NavLink>
             </li>
           </ul>
         </div>
