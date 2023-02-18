@@ -17,10 +17,13 @@ const Header = () =>{
               <NavLink className='nav-link' to="/about">О нас</NavLink>
             </li>
             <li class="nav-item">
-            <NavLink className='nav-link' to="/weather">Погода</NavLink>
+              <NavLink className='nav-link' to="/weather">Погода</NavLink>
             </li>
             <li class="nav-item">
-            <NavLink className='nav-link' to="dialogs">Диалоги</NavLink>
+            < NavLink className='nav-link' to="dialogs">Диалоги</NavLink>
+            </li>
+            <li class="nav-item">
+              <NavLink className='nav-link' to="/license">Соглашение</NavLink>
             </li>
           </ul>
         </div>
