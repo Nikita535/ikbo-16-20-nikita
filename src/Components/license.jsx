@@ -5,7 +5,6 @@ function License(props){
     // console.log('render >',props);
     return (
         <div>
-            {props.lock &&
                 <div>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ornare, nisi in
                     placerat egestas, nisl turpis consequat lorem, at congue tortor mauris eget sapien. 
@@ -13,9 +12,10 @@ function License(props){
                     elementum blandit. Pellentesque pharetra sem neque, blandit sodales nibh condimentum vel. Aliquam lorem lacus, 
                     vehicula et ornare at, convallis et libero. Duis quis lacinia eros.
                 </div>
-            }
             <input type="checkbox" onClick={props.onCheckBox} id = "checkBox"/>
-            <button type="submit" id="button">Subscribe</button>
+            {props.lock &&
+                <button type="submit" id="button">Subscribe</button>
+            }
         </div>
     );
 }
