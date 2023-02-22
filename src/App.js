@@ -5,6 +5,8 @@ import About from './Components/about';
 import Dialogs from './Components/Dialogs/Dialogs';
 import License from './Components/license';
 import store from './Redux/store';
+import Login from './Components/auth/login';
+import Register from './Components/auth/register';
 
 
 const App = (props) => {
@@ -17,6 +19,8 @@ const App = (props) => {
             <Route path="/dialogs/*" element={<Dialogs store={props.store} sendMessage={props.sendMessage}/>}/>
             <Route path="/weather" element={<Body weatherMethod={props.gettingWeather} state={props.state}/>}/>
             <Route path="/license" element={<License store={store} />}/>
+            <Route path="/login" element={<Login/>}/>
+            <Route path="/register" element={<Register/>}/>
         </Routes>
       </div> 
       </BrowserRouter>

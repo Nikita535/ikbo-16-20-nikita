@@ -25,6 +25,9 @@ const Header = () =>{
             <li class="nav-item">
               <NavLink className='nav-link' to="/license">Соглашение</NavLink>
             </li>
+            <li class="nav-item">
+              <NavLink className='nav-link' to="/login">Авторизация</NavLink>
+            </li>
           </ul>
         </div>
       </nav>
