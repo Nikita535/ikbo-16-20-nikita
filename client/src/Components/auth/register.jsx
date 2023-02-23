@@ -1,20 +1,15 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { NavLink } from "react-router-dom";
+import { registration } from "../../http/userApi";
 
-const host  = axios.create({
-  baseURL: "http://localhost:5000"
-});
 
 const Register = () =>{  
   const [email,setEmail] = useState();
   const [password,setPassword]=useState();
 
 
-  const reg =async () =>{
-    const response = await host.post('api/user/registration',{email,password,role:"ADMIN"})
-    console.log(response)
-    return response;
+  const signIn = async() =>{
+    const response = await registration(email,password);
   }
 
     return (
@@ -47,7 +42,7 @@ const Register = () =>{
                     </div>
                   </div>
                   <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                    <NavLink to="/login" onClick={reg} class="btn btn-primary btn-lg">Register</NavLink>
+                    <NavLink to="/login" onClick={signIn} class="btn btn-primary btn-lg">Register</NavLink>
                   </div>
 
                 </form>

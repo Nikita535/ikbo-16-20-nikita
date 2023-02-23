@@ -1,26 +1,16 @@
 import React from "react";
 import { NavLink, redirect, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios";
-
-const host  = axios.create({
-    baseURL: "http://localhost:5000"
-  });
+import {login} from '../../http/userApi'
 
 const Login = () =>{
     const [email,setEmail] = useState();
     const [password,setPassword]=useState();
     let navigate = useNavigate();
-    const log =async () =>{
-        const response = await host.post('api/user/login',{email,password})
-        console.log(response)
-        if(response.status==200){
-            console.log('ok');
-            return navigate('/');
-        }
-        return navigate('/login');
-      }
-
+    
+    const signUp = async()=>{
+        const response = await login(email,password,navigate);
+    }
     return (
         <section class="vh-100">
         <div class="container py-5 h-100">
@@ -42,7 +32,7 @@ const Login = () =>{
                 </div>
                 <NavLink to="/register">Register</NavLink>
                 <br></br>
-                <NavLink to="/login" onClick={log} class="btn btn-primary btn-lg">Login</NavLink>
+                <NavLink to="/login" onClick={signUp} class="btn btn-primary btn-lg">Login</NavLink>
                 </form>
             </div>
             </div>

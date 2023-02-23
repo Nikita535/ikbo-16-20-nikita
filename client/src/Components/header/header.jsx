@@ -1,9 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { Context } from "../..";
+import { useContext } from "react";
+import {observer} from "mobx-react-lite";
 
 
-
-const Header = () =>{
+const Header = observer(() =>{
+  const {user} = useContext(Context);
     return (
       <div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -25,14 +28,16 @@ const Header = () =>{
             <li class="nav-item">
               <NavLink className='nav-link' to="/license">Соглашение</NavLink>
             </li>
+            {user.isAuth &&
             <li class="nav-item">
               <NavLink className='nav-link' to="/login">Авторизация</NavLink>
             </li>
+            } 
           </ul>
         </div>
       </nav>
     </div>
     );
-}
+})
 
 export default Header;

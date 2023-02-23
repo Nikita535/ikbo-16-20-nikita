@@ -7,16 +7,19 @@ import License from './Components/license';
 import store from './Redux/store';
 import Login from './Components/auth/login';
 import Register from './Components/auth/register';
+import { useContext } from 'react';
+import {Context} from './index';
 
 
 const App = (props) => {
-  const isAuth=false;
+  const {user}= useContext(Context);
+  console.log(user);
   return (
     <BrowserRouter>
       <div>
         <Header />
         <Routes>
-          {isAuth &&
+          {user.isAuth &&
             <Route path="/about" element={<About/>}/>
           }
             <Route path="/dialogs/*" element={<Dialogs store={props.store} sendMessage={props.sendMessage}/>}/>
