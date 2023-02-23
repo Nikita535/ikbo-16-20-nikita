@@ -7,21 +7,32 @@ import License from './Components/license';
 import store from './Redux/store';
 import Login from './Components/auth/login';
 import Register from './Components/auth/register';
-import { useContext } from 'react';
+import { useContext, useEffect,useState } from 'react';
 import {Context} from './index';
+import { check } from './http/userApi';
+import { observer } from 'mobx-react-lite';
 
 
-const App = (props) => {
+
+const App = observer((props) => {
   const {user}= useContext(Context);
-  console.log(user);
+  const [loading, setLoading] = useState(true)
+//   useEffect(() => {
+//     check().then(data => {
+//         user.setUser(data)
+//         console.log(data)
+//         user.setIsAuth(true)
+//     }).finally(() => setLoading(false))
+// }, [])
+
+
+
   return (
     <BrowserRouter>
       <div>
         <Header />
         <Routes>
-          {user.isAuth &&
-            <Route path="/about" element={<About/>}/>
-          }
+            <Route path="/about" element={<About/>}/>  
             <Route path="/dialogs/*" element={<Dialogs store={props.store} sendMessage={props.sendMessage}/>}/>
             <Route path="/weather" element={<Body weatherMethod={props.gettingWeather} state={props.state}/>}/>
             <Route path="/license" element={<License store={store} />}/>
@@ -31,6 +42,6 @@ const App = (props) => {
       </div> 
       </BrowserRouter>
   );
-}
+})
 
 export default App;

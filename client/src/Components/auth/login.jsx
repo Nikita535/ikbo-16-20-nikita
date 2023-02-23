@@ -1,15 +1,28 @@
 import React from "react";
 import { NavLink, redirect, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState ,useContext} from "react";
 import {login} from '../../http/userApi'
+import {observer} from "mobx-react-lite";
+import { Context } from "../..";
 
-const Login = () =>{
+const Login = observer(() =>{
     const [email,setEmail] = useState();
     const [password,setPassword]=useState();
+    const {user} = useContext(Context);
     let navigate = useNavigate();
     
     const signUp = async()=>{
-        const response = await login(email,password,navigate);
+        let data;
+        try {
+            data = await login(email,password,navigate);
+            user.setUser(data);
+            user.setIsAuth(true);
+            console.log(user);
+            navigate('/');
+        } catch (error) {
+            alert(error.message)
+            navigate('/login');
+        }
     }
     return (
         <section class="vh-100">
@@ -39,6 +52,6 @@ const Login = () =>{
         </div>
         </section>
 );
-}
+})
 
 export default Login;

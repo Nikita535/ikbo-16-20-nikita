@@ -22,17 +22,22 @@ const Header = observer(() =>{
             <li class="nav-item">
               <NavLink className='nav-link' to="/weather">Погода</NavLink>
             </li>
+            {user.isAuth &&
             <li class="nav-item">
             < NavLink className='nav-link' to="dialogs">Диалоги</NavLink>
             </li>
+            }
             <li class="nav-item">
               <NavLink className='nav-link' to="/license">Соглашение</NavLink>
             </li>
-            {user.isAuth &&
+            {!user.isAuth &&
             <li class="nav-item">
               <NavLink className='nav-link' to="/login">Авторизация</NavLink>
             </li>
             } 
+            <li class="nav-item">
+              <NavLink className='nav-link' to="/license">{user.email}</NavLink>
+            </li>
           </ul>
         </div>
       </nav>
