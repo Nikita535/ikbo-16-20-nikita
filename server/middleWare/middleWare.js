@@ -8,6 +8,7 @@ module.exports = function(req,res,next){
         }
         const decode = jwt.verify(token,'secret_key');
         req.user = decode;
+        console.log(decode)
         next();
     } catch (error) {
         res.status(401).json({message:"Не авторизован"});

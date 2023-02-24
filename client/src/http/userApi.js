@@ -21,8 +21,20 @@ import jwt_decode from 'jwt-decode';
     return jwt_decode(data.token);
 }
 
+const getAll = async ()=>{
+    const {data} = await $authHost.get('api/user/getall');
+    return data;
+}
+
+const deleteUser = async (email,role) =>{
+    const {data} = await $authHost.post('api/user/delete',{email,role})
+    return data;
+}
+
 export {
     login,
     registration,
-    check
+    check,
+    getAll,
+    deleteUser
 }

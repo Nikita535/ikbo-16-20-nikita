@@ -30,16 +30,6 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
     return {
-        // onCheckBoxUp: () =>{
-        //     console.log('click');
-        //     const action = {type: 'Lock'}
-        //     dispatch(action)
-        // },
-        // onCheckBoxDown: () =>{
-        //     console.log('click');
-        //     const action = {type: 'Unlock'}
-        //     dispatch(action)
-        // }
         onCheckBox: () =>{
             console.log('click');
             let action = {type: ''}

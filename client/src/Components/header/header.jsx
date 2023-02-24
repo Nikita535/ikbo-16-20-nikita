@@ -52,7 +52,7 @@ const Header = observer(() =>{
             } 
             {user.isAuth &&
               <li class="nav-item">
-                <NavLink className='nav-link' onClick={()=>logOut()} to="/license">{`Выйти: ${jwt_decode(localStorage.getItem('token')).email}`}</NavLink>
+                <NavLink className='nav-link' onClick={()=>logOut()} to="/">{`Выйти: ${jwt_decode(localStorage.getItem('token')).email}`}</NavLink>
               </li>
             } 
           </ul>

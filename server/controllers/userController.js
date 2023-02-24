@@ -43,6 +43,28 @@ class UserController{
         const token = generateJWT(req.user.id, req.user.email, req.user.role)
         return res.json({token})
     }
+    async getAll(req,res){
+        const users = await User.findAll();
+        return res.json(users);
+    }
+    async delete(req,res){
+        const {email} = req.body;
+
+        const token = req.headers.authorization.split(' ')[1];
+        if(!token){
+            return res.status(401).json({message:"Не авторизован"});
+        }
+        const decode = jwt.verify(token,'secret_key');
+        req.user = decode;
+
+        console.log(email)
+        console.log(decode.role)
+        if(decode.role !== 'ADMIN'){
+            return res.status(403).json({messageL:"Нет прав"})
+        }
+        User.destroy({where:{email:email}})
+        return res.json({messageL:"Пользователь удалён"})
+    }
 }
 
 module.exports = new UserController();
