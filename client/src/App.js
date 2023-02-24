@@ -16,14 +16,14 @@ import { observer } from 'mobx-react-lite';
 
 const App = observer((props) => {
   const {user}= useContext(Context);
-  const [loading, setLoading] = useState(true)
-//   useEffect(() => {
-//     check().then(data => {
-//         user.setUser(data)
-//         console.log(data)
-//         user.setIsAuth(true)
-//     }).finally(() => setLoading(false))
-// }, [])
+
+  useEffect(() => {
+    check().then(data => {
+        user.setUser(data)
+        console.log(data)
+        user.setIsAuth(true)
+    })
+}, [])
 
 
 
