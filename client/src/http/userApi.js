@@ -31,10 +31,16 @@ const deleteUser = async (email,role) =>{
     return data;
 }
 
+const updateUser = async (role,id)=>{
+     const {data} = await $authHost.post('api/user/update',{role,id})
+    return data;
+}
+
 export {
     login,
     registration,
     check,
     getAll,
-    deleteUser
+    deleteUser,
+    updateUser
 }

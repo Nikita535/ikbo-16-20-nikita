@@ -10,5 +10,6 @@ router.post('/login',userController.login);
 router.get('/auth',middleWare,userController.check);
 router.post('/delete',userController.delete);
 router.get('/getall',userController.getAll);
+router.post('/update',userController.update);
 
 module.exports = router

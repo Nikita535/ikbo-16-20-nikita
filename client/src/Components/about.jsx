@@ -1,12 +1,12 @@
 import { observer } from "mobx-react-lite";
-import React, { useContext ,useEffect} from "react";
+import React, { useContext ,useEffect,useState} from "react";
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Context } from "..";
 import {NavLink} from "react-router-dom"
-import { deleteUser, getAll } from "../http/userApi";
+import { deleteUser, getAll , updateUser} from "../http/userApi";
 
 const About = observer((props) => {
-
+    const [roleFromInput,setRole] = useState();
     const {user} = useContext(Context);
     useEffect(() => {
         getAll().then(data => {
@@ -19,17 +19,19 @@ const About = observer((props) => {
         const data = deleteUser(email,role);
         console.log(data)
     }
-    const changeUser = ()=>{
-        console.log("change")
+    const changeUser = (role,id)=>{
+        const data = updateUser(role,id);
+        console.log(data);
     }
 
     return (
         <ListGroup>
             {user.users.map(l=>{return(
                 <ListGroup.Item mr={4}>
-                    {l.email}
-                    <NavLink to="/"  onClick={()=>deleteUser_(l.email,user.getRole)}>Удалить</NavLink> 
-                    <p onClick={()=>changeUser()}>Изменить</p>
+                    <div>{l.email}</div>
+                    <input value={roleFromInput} onChange={event => setRole(event.target.value)}/>
+                    <div><NavLink to="/"  onClick={()=>deleteUser_(l.email,user.getRole)}>Удалить</NavLink></div>
+                    <p onClick={()=>changeUser(roleFromInput,l.id)}>Изменить</p>
                 </ListGroup.Item>
                     );
                 })
